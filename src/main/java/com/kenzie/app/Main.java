@@ -1,7 +1,10 @@
 package com.kenzie.app;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Random;
 import org.apache.commons.lang3.ArrayUtils;
+
 
 public class Main {
     /*************************************/
@@ -14,12 +17,23 @@ public class Main {
     // Exercise One -------------------------------------------------------------------
     public static void incrementEveryNumber(int[] array) {
         // Increment every number in the array by one
+//        int[] numbers = { 0, 1, 2, 3, 4, 5 };
+        for(int i = 0; i < array.length; i++) {
+            array[i] = array[i] + 1; //increment by 1
+//        }
 
+        }
     }
 
     // Exercise Two -------------------------------------------------------------------
     public static void fillWithRandomNumbers(int[] array) {
         // Fill the array with random positive numbers up to 27 (Values from 1 to 27)
+        int[] randomNumberArray = new int[7];
+
+
+        for(int i = 0; i < array.length; i++){
+            array[i] = (int)(Math.random() * ((27 - 1)+1));
+        }
 
     }
 
@@ -36,21 +50,47 @@ public class Main {
         // Return the new array
 
         int[] result = new int[0];
+        int counter = 0;
+        //loop and count how many numbers are 10 or larger
+        //create a new array of that size
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] >= 10) {
+                counter++;
+            }
+        }
+        result = new int[counter]; //size of new array
 
-        return result;
-    }
+        int resultIndex = 0;
+        //loop through the array again and copy the numbers over to the new array.
+        for(int j =0; j < array.length; j++){
+            if (array[j] >= 10) {
+                result[resultIndex] = array[j];
+                resultIndex += 1;
+            }
+        }
+            return result;
+        }
 
     // Exercise Four -------------------------------------------------------------------
     public static int addAllNumbers(int[] array) {
         // Add every number in the array and return the sum
+        int sum = 0;
+        for(int i : array){
+            sum += i;
+        }
 
-        return 0;
+        return sum;
     }
 
     // Exercise Five -------------------------------------------------------------------
     public static void replaceAll(String[] words, String wordToReplace, String newValue) {
         // Replace all instances of the given wordToReplace in the words array with the new value
-
+        //replace frank with shaun
+        for (int index = 0; index < words.length; index++) {
+            if (words[index].equals(wordToReplace)){
+                words[index] = (newValue);
+            }
+        }
     }
 
     // Exercise Six -------------------------------------------------------------------
@@ -58,8 +98,13 @@ public class Main {
         // Reverse the order of every element in the array. This should be done in-place
         // This should be done WITHOUT using ArrayUtils.reverse()
         // Hint, you will need to create a "temp" variable to hold one item at a time while you swap items.
+        int temp = 0;
 
-
+        for(int i=0;i<array.length/2;i++){
+            temp=array[i];
+            array[i]=array[array.length-i-1];
+            array[array.length-i-1]=temp;
+        }
     }
 
     // Complete the Following Exercises (7 and 8) USING ArrayUtils
@@ -67,6 +112,8 @@ public class Main {
     // Exercise Seven -------------------------------------------------------------------
     public static void reverseString(String[] words) {
         // Reverse the order of every element in the array.
+       ArrayUtils.reverse(words);
+
 
     }
 
@@ -78,7 +125,12 @@ public class Main {
         // only remove the LAST occurrence of the number.
         // Hint: You should be able to do this using two different ArrayUtils methods together...
 
-        int[] result = null;
+
+
+
+        int indexToRemove = ArrayUtils.lastIndexOf(array,numberToRemove);
+        int[] result = ArrayUtils.remove(array, indexToRemove);
+
 
         return result;
     }
